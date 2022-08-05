@@ -1,16 +1,16 @@
 const cors = require('cors');
 const express = require('express');
 const bodyParser = require('body-parser');
-const db = require('./conn');
-var app = express();
+const mongoDb = require('./conn');
 const PORT = 5000;
+var app = express();
 
 // declare routes
 const indexRouter = require("./routes/index");
 const experienceRouter = require("./routes/experience");
 
 // configuring middleware
-app.use(bodyParser.urlencoded({extended: true}));
+app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 app.use(cors())
 app.use(
@@ -19,8 +19,11 @@ app.use(
     })
 )
 
-// configuring routes
-app.use("/", indexRouter);
+mongoDb.connectToServer(() => {
+    // configuring routes
+    app.use("/", indexRouter);
+})
+
 // app.use("/experience", experienceRouter);
 
 // app.use(express.static("client/build"))
