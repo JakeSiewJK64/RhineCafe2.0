@@ -1,0 +1,23 @@
+.link-container {
+    padding: 10px;
+    margin: 5px;
+    width: 100%;
+    border-left: 1px solid black;
+    background: white;
+    display: block;
+
+    /* transition animation */
+    background: linear-gradient(to left, white 50%, #ecf0f1 50%);
+    background-size: 200% 100%;
+    background-position: right bottom;
+    transition: all .8s ease-out;
+}
+
+.link-container:hover {
+    cursor: pointer;
+    background-position: left bottom;
+}
+
+.link-container li {
+    list-style: none;
+}
