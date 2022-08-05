@@ -1,9 +1,11 @@
 const cors = require('cors');
 const express = require('express');
 const bodyParser = require('body-parser');
-const mongoDb = require('./conn');
+const mongoConnect = require('./config/conn');
 const PORT = 5000;
 var app = express();
+
+mongoConnect();
 
 // declare routes
 const indexRouter = require("./routes/index");
@@ -19,12 +21,8 @@ app.use(
     })
 )
 
-mongoDb.connectToServer(() => {
-    // configuring routes
-    app.use("/", indexRouter);
-})
-
-// app.use("/experience", experienceRouter);
+app.use("/", indexRouter);
+app.use("/experience", experienceRouter);
 
 // app.use(express.static("client/build"))
 // app.get("*", (req, res) => {
