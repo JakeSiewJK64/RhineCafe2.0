@@ -18,9 +18,9 @@ const SocialMediaComponent = () => {
             <img src={githubProf} alt="github_profile" className="rounded-circle w-25 mx-auto" />
             <img src={caption} alt="caption" style={{ "height": "300px" }} className="mt-3" />
             {
-                images.map(image => {
+                images.map((image, index) => {
                     return (
-                        <a href={image.url} className="mt-1 mx-auto" style={{ "width": "30px" }} target="_blank" rel="noreferrer">
+                        <a href={image.url} className="mt-1 mx-auto" style={{ "width": "30px" }} target="_blank" rel="noreferrer" key={index}>
                             <img src={image.imgUrl} alt="socialmedia" />
                         </a>
                     )
