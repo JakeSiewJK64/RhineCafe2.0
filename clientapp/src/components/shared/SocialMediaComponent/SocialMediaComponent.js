@@ -3,6 +3,7 @@ import mail from '../../../assets/img/mail.svg';
 import github from '../../../assets/img/github.svg';
 import linkedin from '../../../assets/img/linkedin.svg';
 import './SocialMediaComponent.css';
+import { Typography } from '@mui/material';
 
 const SocialMediaComponent = () => {
 
@@ -27,6 +28,9 @@ const SocialMediaComponent = () => {
                     )
                 })
             }
+            <Typography fontSize={30} fontWeight={"bold"} style={{ "transform": "rotate(90deg)", "marginTop": "100px" }}>
+                RhineCafe2.0
+            </Typography>
         </div>
     )
 }

@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom';
 const NavigationBarComponent = ({ routes }) => {
     return (
         <>
-            <div className="w-50">
+            <div className="w-50 nav-container">
                 <ul>
                     <img src={logo} alt="logo" />
                     {

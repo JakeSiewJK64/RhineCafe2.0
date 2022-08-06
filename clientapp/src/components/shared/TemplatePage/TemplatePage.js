@@ -4,7 +4,7 @@ const TemplatePage = ({ title, renderPage }) => {
     return (
         <>
             <div className='w-100'>
-                <span style={{ "fontSize": "5em" }}>
+                <span style={{ "fontSize": "4em" }}>
                     {title}
                 </span>
                 <div>
