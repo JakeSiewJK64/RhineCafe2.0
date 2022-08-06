@@ -30,7 +30,9 @@ const ExperienceComponent = () => {
                                         </div>
                                     </AccordionSummary>
                                     <AccordionDetails>
-                                        <img src={experience.CompanyImage} alt="companyimage" style={{ "maxWidth": "150px" }} className="mb-3" />
+                                        <div className='text-center'>
+                                            <img src={experience.CompanyImage} alt="companyimage" style={{ "maxWidth": "300px" }} className="mb-3" />
+                                        </div>
                                         <Typography>
                                             <strong>Duration:</strong> {experience.Duration} Months</Typography>
                                         <Typography>{experience.Description}</Typography>
@@ -38,7 +40,7 @@ const ExperienceComponent = () => {
                                         {
                                             experience.Tools.map((tool, index) => {
                                                 return (
-                                                    <Chip key={index} label={tool} color={ index % 2 === 0 ? "warning" : index % 3 === 0 ? "info" : index % 4 === 0 ? "success" : "primary"} variant="outlined" className="m-1" />
+                                                    <Chip key={index} label={tool} color={index % 2 === 0 ? "warning" : index % 3 === 0 ? "info" : index % 4 === 0 ? "success" : "primary"} variant="outlined" className="m-1" />
                                                 )
                                             })
                                         }
@@ -46,7 +48,7 @@ const ExperienceComponent = () => {
                                         {
                                             experience.Languages.map((language, index) => {
                                                 return (
-                                                    <Chip key={index} label={language} color={ index % 2 === 0 ? "warning" : index % 3 === 0 ? "info" : index % 4 === 0 ? "success" : "primary"} variant="outlined" className="m-1" />
+                                                    <Chip key={index} label={language} color={index % 2 === 0 ? "warning" : index % 3 === 0 ? "info" : index % 4 === 0 ? "success" : "primary"} variant="outlined" className="m-1" />
                                                 )
                                             })
                                         }
