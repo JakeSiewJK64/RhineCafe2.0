@@ -1,5 +1,6 @@
 import './Footer.css';
 import Flex from '@react-css/flex';
+import { Link } from 'react-router-dom';
 
 const Footer = ({ routes }) => {
     return (
@@ -9,9 +10,11 @@ const Footer = ({ routes }) => {
                     {
                         routes.map((route, index) => {
                             return (
-                                <li className="route-container mx-4 text-uppercase" key={index} style={{ "cursor": "pointer" }}>
-                                    <strong>{route.name}</strong>
-                                </li>
+                                <Link to={route.route} key={index}>
+                                    <li className="route-container mx-4 text-uppercase text-white" key={index} style={{ "cursor": "pointer" }}>
+                                        <strong>{route.name}</strong>
+                                    </li>
+                                </Link>
                             )
                         })
                     }

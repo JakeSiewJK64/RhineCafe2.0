@@ -1,8 +1,8 @@
 import './NavigationBarComponent.css';
 import logo from '../../../assets/img/logo.svg';
+import { Link } from 'react-router-dom';
 
 const NavigationBarComponent = ({ routes }) => {
-
     return (
         <>
             <div className="w-50">
@@ -11,11 +11,15 @@ const NavigationBarComponent = ({ routes }) => {
                     {
                         routes.map((route, i) => {
                             return (
-                                <div className="link-container" key={i}>
-                                    <li>
-                                        <strong>{route.name}</strong>
-                                    </li>
-                                </div>
+                                <Link to={route.route} style={{ "textDecoration": "none" }} className="text-black">
+                                    <div className="link-container" key={i}>
+                                        <li>
+                                            <strong>
+                                                {route.name}
+                                            </strong>
+                                        </li>
+                                    </div>
+                                </Link>
                             )
                         })
                     }
