@@ -11,7 +11,7 @@ const NavigationBarComponent = ({ routes }) => {
                     {
                         routes.map((route, i) => {
                             return (
-                                <Link to={route.route} style={{ "textDecoration": "none" }} className="text-black">
+                                <Link to={route.route} style={{ "textDecoration": "none" }} className="text-black" key={i}>
                                     <div className="link-container" key={i}>
                                         <li>
                                             <strong>
