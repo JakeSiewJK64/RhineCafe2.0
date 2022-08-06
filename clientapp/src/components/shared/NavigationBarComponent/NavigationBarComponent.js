@@ -1,17 +1,7 @@
 import './NavigationBarComponent.css';
 import logo from '../../../assets/img/logo.svg';
 
-const NavigationBarComponent = () => {
-    const routes = [
-        { name: "News", route: "/" },
-        { name: "Statements", route: "/" },
-        { name: "Live/Event", route: "/" },
-        { name: "Media", route: "/" },
-        { name: "Artist", route: "/" },
-        { name: "Discography", route: "/" },
-        { name: "Store", route: "/" },
-        { name: "Project", route: "/" },
-    ];
+const NavigationBarComponent = ({ routes }) => {
 
     return (
         <>

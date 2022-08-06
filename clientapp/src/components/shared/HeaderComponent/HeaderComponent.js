@@ -1,9 +1,9 @@
 import NavigationBarComponent from '../../shared/NavigationBarComponent/NavigationBarComponent';
 
-const HeaderComponent = () => {
+const HeaderComponent = ({ routes }) => {
     return (
-        <header className="m-1 d-flex flex-column">            
-            <NavigationBarComponent />
+        <header className="m-1 d-flex flex-column">
+            <NavigationBarComponent routes={routes} />
         </header>
     )
 }

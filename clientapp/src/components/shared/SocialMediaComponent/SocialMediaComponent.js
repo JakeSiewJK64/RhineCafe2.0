@@ -2,6 +2,7 @@ import caption from '../../../assets/img/caption.svg';
 import mail from '../../../assets/img/mail.svg';
 import github from '../../../assets/img/github.svg';
 import linkedin from '../../../assets/img/linkedin.svg';
+import './SocialMediaComponent.css';
 
 const SocialMediaComponent = () => {
 
@@ -14,7 +15,7 @@ const SocialMediaComponent = () => {
     const githubProf = "https://avatars.githubusercontent.com/u/47139291?v=4";
 
     return (
-        <div className="d-flex flex-column mt-5">
+        <div className="d-flex flex-column mt-5 social-media-container">
             <img src={githubProf} alt="github_profile" className="rounded-circle w-25 mx-auto" />
             <img src={caption} alt="caption" style={{ "height": "300px" }} className="mt-3" />
             {
