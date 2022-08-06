@@ -28,10 +28,10 @@ app.use("/experience", experienceRouter);
 app.use("/education", educationRouter);
 app.use("/projects", projectRouter);
 
-// app.use(express.static("client/build"))
-// app.get("*", (req, res) => {
-//     res.sendFile(path.join(__dirname, "client/build/index.html"));
-// });
+app.use(express.static("clientapp/build"))
+app.get("*", (req, res) => {
+    res.sendFile(path.join(__dirname, "clientapp/build/index.html"));
+});
 
 app.listen(PORT, () => {
     console.log(`Now starting server at port ${PORT}...`);
