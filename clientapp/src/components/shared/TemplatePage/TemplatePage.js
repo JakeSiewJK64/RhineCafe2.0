@@ -3,10 +3,14 @@ import './TemplatePage.css';
 const TemplatePage = ({ title, renderPage }) => {
     return (
         <>
-            <span style={{ "fontSize": "5em" }}>
-                {title}
-            </span>
-            {renderPage}
+            <div className='w-100'>
+                <span style={{ "fontSize": "5em" }}>
+                    {title}
+                </span>
+                <div>
+                    {renderPage}
+                </div>
+            </div>
         </>
     )
 }

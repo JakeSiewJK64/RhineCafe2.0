@@ -13,10 +13,11 @@ const HomeComponent = () => {
         { path: "/statements", component: <TemplatePage title="Statements" renderPage={<StatementComponent />} /> },
         { path: "/projects", component: <TemplatePage title="Projects" renderPage={<ProjectComponent />} /> },
         { path: "/experiences", component: <TemplatePage title="Experiences" renderPage={<ExperienceComponent />} /> },
+        { path: "**", component: <TemplatePage title="Experiences" renderPage={<StatementComponent />} /> },
     ]
     return (
         <div className="d-flex flex-row w-100" style={{ "paddingTop": "10em" }}>
-            <div className="d-flex flex-column">
+            <div className="d-flex flex-column w-100">
                 <Switch>
                     {
                         custom_routes.map((route, index) => {
