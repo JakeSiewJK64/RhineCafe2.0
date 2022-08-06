@@ -2,6 +2,7 @@ const cors = require('cors');
 const express = require('express');
 const bodyParser = require('body-parser');
 const mongoConnect = require('./config/conn');
+const path = require("path");
 const PORT = 5000;
 var app = express();
 
@@ -23,15 +24,14 @@ app.use(
     })
 )
 
-app.use("/", indexRouter);
+app.use(express.static("clientapp/build"))
 app.use("/experience", experienceRouter);
 app.use("/education", educationRouter);
 app.use("/projects", projectRouter);
-
-app.use(express.static("clientapp/build"))
-app.get("*", (req, res) => {
+app.get("*", (_, res) => {
     res.sendFile(path.join(__dirname, "clientapp/build/index.html"));
 });
+
 
 app.listen(PORT, () => {
     console.log(`Now starting server at port ${PORT}...`);
