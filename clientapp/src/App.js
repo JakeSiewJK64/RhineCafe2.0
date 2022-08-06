@@ -1,7 +1,5 @@
 import { BrowserRouter as Router } from 'react-router-dom';
 import HomeComponent from './components/Pages/HomeComponent/HomeComponent';
-import ProjectsComponent from './components/Pages/ProjectsComponent/ProjectsComponent';
-import StatementComponent from './components/Pages/StatementComponent/StatementComponent';
 import Footer from './components/shared/Footer/Footer';
 import HeaderComponent from './components/shared/HeaderComponent/HeaderComponent';
 import SocialMediaComponent from './components/shared/SocialMediaComponent/SocialMediaComponent';
@@ -9,13 +7,9 @@ import SocialMediaComponent from './components/shared/SocialMediaComponent/Socia
 function App() {
 
   const routes = [
-    { name: "Statements", route: "/statement", component: StatementComponent },
-    { name: "Projects", route: "/projects", component: ProjectsComponent },
-    { name: "Live/Event", route: "/" },
-    { name: "Media", route: "/" },
-    { name: "Artist", route: "/" },
-    { name: "Discography", route: "/" },
-    { name: "Store", route: "/" },
+    { name: "Statements", route: "/statements"},
+    { name: "Projects", route: "/projects"},
+    { name: "Experience", route: "/experiences"},
   ];
 
   return (

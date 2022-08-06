@@ -1,15 +1,18 @@
+import './HomeComponent.css';
 import StatementComponent from '../StatementComponent/StatementComponent';
 import ProjectComponent from '../ProjectsComponent/ProjectsComponent';
-import './HomeComponent.css';
+import ExperienceComponent from '../ExperienceComponent/ExperienceComponent';
+import TemplatePage from '../../shared/TemplatePage/TemplatePage';
 import {
     Switch,
     Route,
 } from "react-router-dom";
 
-const HomeComponent = ({ routes }) => {
+const HomeComponent = () => {
     const custom_routes = [
-        { path: "/statement", component: StatementComponent },
-        { path: "/projects", component: ProjectComponent },
+        { path: "/statements", component: <TemplatePage title="Statements" renderPage={<StatementComponent />} /> },
+        { path: "/projects", component: <TemplatePage title="Projects" renderPage={<ProjectComponent />} /> },
+        { path: "/experiences", component: <TemplatePage title="Experiences" renderPage={<ExperienceComponent />} /> },
     ]
     return (
         <div className="d-flex flex-row w-100" style={{ "paddingTop": "10em" }}>

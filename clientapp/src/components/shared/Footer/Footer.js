@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom';
 const Footer = ({ routes }) => {
     return (
         <footer style={{ "position": "relative", "marginTop": "10rem" }} className="bg-black text-white w-100">
-            <Flex flexDirection='column' style={{ "margin": "4em" }}>
+            <Flex flexDirection='column' style={{ "margin": "1em" }}>
                 <ol className="d-flex flex-row justify-content-center m-5">
                     {
                         routes.map((route, index) => {

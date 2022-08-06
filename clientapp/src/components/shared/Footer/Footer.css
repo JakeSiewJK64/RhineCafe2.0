@@ -1,4 +1,8 @@
 .route-container {
     list-style: none;
-    text-decoration: none;
+    text-decoration: none !important;
+}
+
+.route-container strong {
+    text-decoration: none !important;
 }
