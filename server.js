@@ -33,6 +33,6 @@ app.get("*", (_, res) => {
 });
 
 
-app.listen(PORT, () => {
+app.listen(process.env.PORT || PORT, () => {
     console.log(`Now starting server at port ${PORT}...`);
 });
