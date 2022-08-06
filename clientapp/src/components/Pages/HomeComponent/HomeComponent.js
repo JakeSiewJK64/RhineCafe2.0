@@ -15,7 +15,7 @@ const HomeComponent = () => {
         { path: "/projects", component: <TemplatePage title="Projects" renderPage={<ProjectComponent />} /> },
         { path: "/experiences", component: <TemplatePage title="Experiences" renderPage={<ExperienceComponent />} /> },
         { path: "/education", component: <TemplatePage title="Education" renderPage={<EducationComponent />} /> },
-        { path: "**", component: <TemplatePage title="Experiences" renderPage={<StatementComponent />} /> },
+        { path: "**", component: <TemplatePage title="Statements" renderPage={<StatementComponent />} /> },
     ]
     return (
         <div className="d-flex flex-row w-100" style={{ "paddingTop": "10em" }}>
