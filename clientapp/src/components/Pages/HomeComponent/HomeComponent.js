@@ -7,12 +7,14 @@ import {
     Switch,
     Route,
 } from "react-router-dom";
+import EducationComponent from '../EducationComponent/EducationComponent';
 
 const HomeComponent = () => {
     const custom_routes = [
         { path: "/statements", component: <TemplatePage title="Statements" renderPage={<StatementComponent />} /> },
         { path: "/projects", component: <TemplatePage title="Projects" renderPage={<ProjectComponent />} /> },
         { path: "/experiences", component: <TemplatePage title="Experiences" renderPage={<ExperienceComponent />} /> },
+        { path: "/education", component: <TemplatePage title="Education" renderPage={<EducationComponent />} /> },
         { path: "**", component: <TemplatePage title="Experiences" renderPage={<StatementComponent />} /> },
     ]
     return (

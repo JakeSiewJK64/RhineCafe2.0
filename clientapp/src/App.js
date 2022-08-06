@@ -10,6 +10,7 @@ function App() {
     { name: "Statements", route: "/statements"},
     { name: "Projects", route: "/projects"},
     { name: "Experience", route: "/experiences"},
+    { name: "Education", route: "/education"},
   ];
 
   return (

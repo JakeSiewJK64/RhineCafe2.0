@@ -10,6 +10,7 @@ mongoConnect();
 // declare routes
 const indexRouter = require("./routes/index");
 const experienceRouter = require("./routes/experience");
+const educationRouter = require("./routes/education");
 
 // configuring middleware
 app.use(bodyParser.urlencoded({ extended: true }));
@@ -23,6 +24,7 @@ app.use(
 
 app.use("/", indexRouter);
 app.use("/experience", experienceRouter);
+app.use("/education", educationRouter);
 
 // app.use(express.static("client/build"))
 // app.get("*", (req, res) => {
