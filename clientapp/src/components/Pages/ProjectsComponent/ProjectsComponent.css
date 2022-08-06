@@ -1,0 +1,14 @@
+.project-url {
+    text-decoration: none;
+    color: black;
+    font-weight: bold;
+}
+
+.project-url:hover {
+    color: #7f8c8d;
+    transition: .5s ease-out;
+}
+
+.project-container:hover {
+    background-color: #ecf0f1;
+}
