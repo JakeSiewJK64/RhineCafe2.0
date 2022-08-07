@@ -2,6 +2,7 @@ import './ProjectsComponent.css';
 import { useEffect, useState } from 'react';
 import moment from 'moment';
 import { Chip } from '@mui/material';
+import { Link } from 'react-router-dom';
 
 const ProjectsComponent = () => {
 
@@ -18,13 +19,13 @@ const ProjectsComponent = () => {
     }, []);
 
     return (
-        <>
-            <div className='d-flex flex-column'>
-                {
-                    projects.map((project, index) => {
-                        return (
-                            <div key={index}>
-                                <div className='d-flex flex-row project-container p-1'>
+        <div className='d-flex flex-column'>
+            {
+                projects.map((project, index) => {
+                    return (
+                        <div key={index}>
+                            <Link to={`/projects/detail/${project._id}`} className="text-decoration-none text-black">
+                                <div className='d-flex flex-row p-1'>
                                     <strong className='my-auto me-5'>{moment(project.StartDate).format('YYYY-MM-DD')}</strong>
                                     <div className='my-1 d-flex flex-column'>
                                         <strong className='p-1 bg-black text-white' style={{ maxWidth: "300px" }} key={index}>{project.Name}</strong>
@@ -39,19 +40,21 @@ const ProjectsComponent = () => {
                                                     })
                                                 }
                                             </div>
-                                            <a href={project.URL} target="_blank" rel="noreferrer" className="project-url">
-                                                See Project
-                                            </a>
                                         </div>
                                     </div>
                                 </div>
-                                <hr />
+                            </Link>
+                            <div className='d-flex'>
+                                <a href={project.URL} target="_blank" rel="noreferrer" className="project-url ms-auto me-1">
+                                    See Project
+                                </a>
                             </div>
-                        )
-                    })
-                }
-            </div>
-        </>
+                            <hr />
+                        </div>
+                    )
+                })
+            }
+        </div>
     )
 }
 

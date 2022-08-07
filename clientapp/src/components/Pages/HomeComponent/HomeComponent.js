@@ -8,13 +8,15 @@ import {
     Route,
 } from "react-router-dom";
 import EducationComponent from '../EducationComponent/EducationComponent';
+import ProjectDetailsComponent from '../ProjectsComponent/ProjectsDetails/ProjectDetailsComponent';
 
 const HomeComponent = () => {
     const custom_routes = [
         { path: "/statements", component: <TemplatePage title="Statements" renderPage={<StatementComponent />} /> },
-        { path: "/projects", component: <TemplatePage title="Projects" renderPage={<ProjectComponent />} /> },
         { path: "/experiences", component: <TemplatePage title="Experiences" renderPage={<ExperienceComponent />} /> },
         { path: "/education", component: <TemplatePage title="Education" renderPage={<EducationComponent />} /> },
+        { path: "/projects", component: <TemplatePage title="Projects" renderPage={<ProjectComponent />} /> },
+        { path: "/projects/detail/:id", component: <TemplatePage title="Project" renderPage={<ProjectDetailsComponent />} /> },
         { path: "**", component: <TemplatePage title="Statements" renderPage={<StatementComponent />} /> },
     ]
     return (
