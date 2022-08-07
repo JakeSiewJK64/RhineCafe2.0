@@ -3,12 +3,48 @@
     .nav-container-desktop {
         display: none !important;
     }
+
+    .backtotop-in {
+        position: fixed;
+        right: 1rem;
+        bottom: 6rem;
+        z-index: 1;
+        animation: fadein.8s;
+    }
+
+    .backtotop-out {
+        position: fixed;
+        right: 1rem;
+        bottom: 6rem;
+        z-index: 1;
+        visibility: hidden;
+        opacity: 0;
+        transition: visibility 0s .6s, opacity .6s linear;
+    }
 }
 
 /* desktop */
 @media only screen and (min-width: 600px) {
     .nav-container-mobile {
         display: none !important;
+    }
+
+    .backtotop-in {
+        position: fixed;
+        right: 5.55rem;
+        bottom: 16rem;
+        z-index: 1;
+        animation: fadein.8s;
+    }
+
+    .backtotop-out {
+        position: fixed;
+        right: 5.55rem;
+        bottom: 16rem;
+        z-index: 1;
+        visibility: hidden;
+        opacity: 0;
+        transition: visibility 0s .6s, opacity .6s linear;
     }
 }
 
@@ -119,4 +155,53 @@
     position: fixed;
     z-index: 2;
     overflow: hidden;
+}
+
+.backtotop-in:hover,
+.backtotop-out:hover {
+    cursor: pointer;
+}
+
+.origin-container {
+    position: absolute;
+    right: -16px;
+    top: 32px;
+}
+
+.origin-animation {
+    animation: originAnimation .8s infinite;
+}
+
+@keyframes fadein {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes fadeout {
+    from {
+        opacity: 1;
+    }
+
+    to {
+        opacity: 0;
+    }
+}
+
+@keyframes originAnimation {
+    0% {
+        transform: translateY(-8px)
+    }
+
+    30% {
+        transform: translateY(2px)
+    }
+
+    100% {
+        transform: translateY(-8px)
+    }
 }

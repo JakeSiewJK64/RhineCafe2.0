@@ -2,12 +2,15 @@ import './NavigationBarComponent.css';
 import logo from '../../../assets/img/logo.svg';
 import { Link } from 'react-router-dom';
 import { useState } from 'react';
+import up from '../../../assets/img/up.svg';
+import origin from '../../../assets/img/origin.svg';
 
 const NavigationBarComponent = ({ routes }) => {
 
     const [menuBtn, setMenuBtn] = useState(document.getElementById('menuButton'));
     const [menuPage, setMenuPage] = useState(document.getElementById('menuPage'));
     const [menuOpen, setMenuOpen] = useState(false);
+    const [showFAB, setShowFAB] = useState(0);
 
     const closeMenuPage = () => {
         menuBtn.classList.remove('open');
@@ -30,6 +33,14 @@ const NavigationBarComponent = ({ routes }) => {
             })
         }
     }
+
+    window.addEventListener("scroll", () => {
+        if (window.scrollY !== 0) {
+            setShowFAB(true)
+            return;
+        }
+        setShowFAB(false);
+    })
 
     return (
         <>
@@ -71,6 +82,12 @@ const NavigationBarComponent = ({ routes }) => {
                     }
                 </div>
             </div>
+            {
+                <div className={`${showFAB ? "backtotop-in" : "backtotop-out"} d-flex flex-column`} onClick={() => window.scrollTo(0, 0)}>
+                    <img src={up} alt="" style={{ "width": "20px" }} className="origin-animation" />
+                    <img src={origin} alt="" className='origin-container' />
+                </div> 
+            }
         </>
     )
 }
