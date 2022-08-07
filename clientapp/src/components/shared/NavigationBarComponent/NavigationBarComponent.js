@@ -1,29 +1,39 @@
 import './NavigationBarComponent.css';
 import logo from '../../../assets/img/logo.svg';
 import { Link } from 'react-router-dom';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 
 const NavigationBarComponent = ({ routes }) => {
 
+    const [menuBtn, setMenuBtn] = useState(null);
+    const [menuPage, setMenuPage] = useState(null);
+    const [menuOpen, setMenuOpen] = useState(false);
+
+    const closeMenuPage = () => {
+        menuBtn.classList.remove('open');
+        menuPage.classList.remove('open');
+        setMenuOpen(false);
+    }
+
     useEffect(() => {
-        const menuBtn = document.getElementById('menuButton');
-        const menuPage = document.getElementById('menuPage');
-        let menuOpen = false;
+        setMenuBtn(document.getElementById('menuButton'));
+        setMenuPage(document.getElementById('menuPage'));
+
         if (menuBtn !== null) {
             menuBtn.addEventListener('click', () => {
                 if (!menuOpen) {
                     menuBtn.classList.add('open');
                     menuPage.classList.add('open');
-                    menuOpen = true;
+                    setMenuOpen(true);
                     return;
                 }
 
                 menuBtn.classList.remove('open');
                 menuPage.classList.remove('open');
-                menuOpen = false;
+                setMenuOpen(false);
             })
         }
-    }, [])
+    }, [menuBtn, menuPage, menuOpen])
 
 
     return (
@@ -58,7 +68,7 @@ const NavigationBarComponent = ({ routes }) => {
                     {
                         routes.map((route, index) => {
                             return (
-                                <Link to={route.route} key={index} className='my-3 text-white text-decoration-none'>
+                                <Link to={route.route} key={index} onClick={() => { closeMenuPage() }} className='my-3 text-white text-decoration-none'>
                                     <h2>{route.name}</h2>
                                 </Link>
                             )

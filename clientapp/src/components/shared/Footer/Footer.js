@@ -10,7 +10,7 @@ const Footer = ({ routes }) => {
                     {
                         routes.map((route, index) => {
                             return (
-                                <Link to={route.route} key={index}>
+                                <Link to={route.route} key={index} className='text-decoration-none'>
                                     <li className="route-container mx-4 text-uppercase text-white" key={index} style={{ "cursor": "pointer"}}>
                                         <strong>{route.name}</strong>
                                     </li>
