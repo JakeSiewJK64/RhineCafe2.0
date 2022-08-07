@@ -2,7 +2,7 @@ import NavigationBarComponent from '../../shared/NavigationBarComponent/Navigati
 
 const HeaderComponent = ({ routes }) => {
     return (
-        <header className="m-1 d-flex flex-column">
+        <header className="d-flex flex-column">
             <NavigationBarComponent routes={routes} />
         </header>
     )

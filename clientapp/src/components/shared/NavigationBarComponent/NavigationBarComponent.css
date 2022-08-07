@@ -1,7 +1,20 @@
+/* mobile */
 @media only screen and (max-width: 600px) {
-    .nav-container {
+    .nav-container-desktop {
         display: none !important;
     }
+}
+
+/* desktop */
+@media only screen and (min-width: 600px) {
+    .nav-container-mobile {
+        display: none !important;
+    }
+}
+
+.nav-container-mobile {
+    position: absolute;
+    right: 0;
 }
 
 .link-container {
@@ -26,4 +39,81 @@
 
 .link-container li {
     list-style: none;
+}
+
+.menu-btn {
+    z-index: 5;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 5px;
+    width: 80px;
+    height: 80px;
+    cursor: pointer;
+    transition: all .5s ease-in-out;
+    border: 3px solid black;
+}
+
+.menu-btn__burger {
+    width: 50px;
+    height: 6px;
+    background-color: black;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(255, 101, 47, .2);
+    transition: all .5s ease-in-out;
+}
+
+.menu-btn__burger::before,
+.menu-btn__burger::after {
+    content: '';
+    position: absolute;
+    width: 50px;
+    height: 6px;
+    background: black;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(255, 101, 47, .2);
+    transition: all .5s ease-in-out;
+}
+
+.menu-btn__burger::before {
+    transform: translateY(-16px);
+}
+
+.menu-btn__burger::after {
+    transform: translateY(16px);
+}
+
+/* animation burger */
+.menu-btn.open .menu-btn__burger {
+    transform: translateX(-50px);
+    background: transparent;
+    box-shadow: none;
+}
+
+.menu-btn.open .menu-btn__burger::before {
+    background-color: white;
+    transform: rotate(45deg) translate(35px, -35px);
+}
+
+.menu-btn.open .menu-btn__burger::after {
+    background-color: white;
+    transform: rotate(-45deg) translate(35px, 35px);
+}
+
+.menu-btn.open {
+    border: 3px solid white;
+}
+
+.menu-page {
+    visibility: hidden !important;
+}
+
+.menu-page.open {
+    visibility: visible !important;
+    background: black;
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    z-index: 2;
 }

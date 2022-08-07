@@ -1,11 +1,35 @@
 import './NavigationBarComponent.css';
 import logo from '../../../assets/img/logo.svg';
 import { Link } from 'react-router-dom';
+import { useEffect } from 'react';
 
 const NavigationBarComponent = ({ routes }) => {
+
+
+    useEffect(() => {
+        const menuBtn = document.getElementById('menuButton');
+        const menuPage = document.getElementById('menuPage');
+        let menuOpen = false;
+        if (menuBtn !== null) {
+            menuBtn.addEventListener('click', () => {
+                if (!menuOpen) {
+                    menuBtn.classList.add('open');
+                    menuPage.classList.add('open');
+                    menuOpen = true;
+                    return;
+                }
+
+                menuBtn.classList.remove('open');
+                menuPage.classList.remove('open');
+                menuOpen = false;
+            })
+        }
+    }, [])
+
+
     return (
         <>
-            <div className="w-50 nav-container">
+            <div className="w-50 nav-container-desktop">
                 <ul>
                     <img src={logo} alt="logo" />
                     {
@@ -24,6 +48,14 @@ const NavigationBarComponent = ({ routes }) => {
                         })
                     }
                 </ul>
+            </div>
+            <div className='nav-container-mobile'>
+                <div className='menu-btn' id='menuButton'>
+                    <div className='menu-btn__burger'></div>
+                </div>
+            </div>
+            <div className='menu-page' id='menuPage'>
+                hi
             </div>
         </>
     )
