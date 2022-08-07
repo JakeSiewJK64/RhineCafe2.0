@@ -38,7 +38,7 @@ const ProjectDetailsComponent = () => {
                                 {
                                     data.Tools.map((tool, index) => {
                                         return (
-                                            <Chip label={tool} key={index} variant="outlined" color={index % 2 === 0 ? "primary" : "warning"} className='mx-1' />
+                                            <Chip label={tool} key={index} variant="outlined" color={index % 2 === 0 ? "primary" : "warning"} className='mx-1 m-1' />
                                         )
                                     })
                                 }
