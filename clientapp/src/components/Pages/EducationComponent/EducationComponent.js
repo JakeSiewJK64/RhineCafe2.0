@@ -18,7 +18,7 @@ const EducationComponent = () => {
 
     return (
         <>
-            <div className='d-flex flex-column'>
+            <div className='d-flex flex-column m-2'>
                 {
                     educations.map((education, index) => {
                         return (

@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 
 const Footer = ({ routes }) => {
     return (
-        <footer style={{ "position": "relative", "marginTop": "10rem" }} className="bg-black text-white w-100">
+        <footer className="bg-black text-white w-100 footer-container">
             <Flex flexDirection='column' style={{ "margin": "1em" }}>
                 <ol className="d-flex flex-row justify-content-center m-5 flex-wrap">
                     {

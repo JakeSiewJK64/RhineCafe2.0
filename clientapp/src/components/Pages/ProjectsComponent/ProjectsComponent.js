@@ -30,7 +30,7 @@ const ProjectsComponent = () => {
                                         <strong className='p-1 bg-black text-white' style={{ maxWidth: "300px" }} key={index}>{project.Name}</strong>
                                         <div className='mt-2'>
                                             <strong>Tools:&nbsp;</strong>
-                                            <div className='d-flex flex-row'>
+                                            <div className='d-flex flex-row flex-wrap'>
                                                 {
                                                     project.Tools.map((tool, index) => {
                                                         return (
