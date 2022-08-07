@@ -51,10 +51,10 @@ const ProjectDetailsComponent = () => {
                                     <strong>Project URL</strong>
                                 </a>
                             </div>
-                            <hr />
                             {
-                                data.Screenshots ?
+                                data.Screenshots && data.Screenshots.length > 0 ?
                                     <>
+                                        <hr />
                                         <h1>Screenshots</h1>
                                         {
                                             data.Screenshots.map((screenshot, index) => {
