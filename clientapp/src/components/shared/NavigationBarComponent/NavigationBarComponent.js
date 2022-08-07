@@ -26,10 +26,7 @@ const NavigationBarComponent = ({ routes }) => {
                     setMenuOpen(true);
                     return;
                 }
-
-                menuBtn.classList.remove('open');
-                menuPage.classList.remove('open');
-                setMenuOpen(false);
+                closeMenuPage();
             })
         }
     }
