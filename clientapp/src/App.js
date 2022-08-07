@@ -1,3 +1,4 @@
+import { useTranslation } from 'react-i18next';
 import { BrowserRouter as Router } from 'react-router-dom';
 import HomeComponent from './components/Pages/HomeComponent/HomeComponent';
 import Footer from './components/shared/Footer/Footer';
@@ -6,11 +7,13 @@ import SocialMediaComponent from './components/shared/SocialMediaComponent/Socia
 
 function App() {
 
+  const { t } = useTranslation();
+
   const routes = [
-    { name: "Statements", route: "/statements"},
-    { name: "Projects", route: "/projects"},
-    { name: "Experience", route: "/experiences"},
-    { name: "Education", route: "/education"},
+    { name: t('StatementsRoute'), route: "/statements" },
+    { name: t('ProjectsRoute'), route: "/projects" },
+    { name: t('ExperienceRoute'), route: "/experiences" },
+    { name: t('EducationRoute'), route: "/education" },
   ];
 
   return (

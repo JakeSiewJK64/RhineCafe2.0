@@ -11,3 +11,17 @@
     margin-top: 10rem;
     position: relative;
 }
+
+@media only screen and (max-width:800px) {
+    .link-container-footer {
+        display: flex !important;
+        flex-direction: column !important;
+    }
+}
+
+@media only screen and (min-width:800px) {
+    .link-container-footer {
+        display: flex !important;
+        flex-direction: row !important;
+    }
+}

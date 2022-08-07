@@ -1,16 +1,36 @@
 import './NavigationBarComponent.css';
-import logo from '../../../assets/img/logo.svg';
 import { Link } from 'react-router-dom';
 import { useState } from 'react';
+import { MenuItem, Select } from '@mui/material';
+
+import i18n from '../../../utils/i18n';
+
+import logo from '../../../assets/img/logo.svg';
 import up from '../../../assets/img/up.svg';
 import origin from '../../../assets/img/origin.svg';
+import japan from '../../../assets/img/country_flags/japan.png';
+import uk from '../../../assets/img/country_flags/uk.png';
 
 const NavigationBarComponent = ({ routes }) => {
+
+    const lang = localStorage.getItem("lang");
+    const [language, setLanguage] = useState(lang ? lang : 'en')
+
+    const swapLanguage = (value) => {
+        localStorage.setItem("lang", value);
+        setLanguage(value);
+        i18n.changeLanguage(value);
+    }
 
     const [menuBtn, setMenuBtn] = useState(document.getElementById('menuButton'));
     const [menuPage, setMenuPage] = useState(document.getElementById('menuPage'));
     const [menuOpen, setMenuOpen] = useState(false);
     const [showFAB, setShowFAB] = useState(0);
+
+    const languages = [
+        { language: "English", value: "en", img: uk },
+        { language: "日本語", value: "jp", img: japan },
+    ]
 
     const closeMenuPage = () => {
         menuBtn.classList.remove('open');
@@ -44,6 +64,28 @@ const NavigationBarComponent = ({ routes }) => {
 
     return (
         <>
+            <div className='language-bar-container'>
+                <Select
+                    style={{ "maxHeight": "50px" }}
+                    required
+                    label="Format"
+                    labelId="format"
+                    value={language}
+                    onChange={(x) => { swapLanguage(x.target.value) }}
+                    name="format"
+                >
+                    {
+                        languages.map(language => {
+                            return (
+                                <MenuItem key={language.value} value={language.value}>
+                                    <img src={language.img} style={{ width: "30px" }} alt="country_flag" />&nbsp;
+                                    {language.language}
+                                </MenuItem>
+                            )
+                        })
+                    }
+                </Select>
+            </div>
             <div className="w-50 nav-container-desktop">
                 <ul>
                     <img src={logo} alt="logo" />
@@ -86,7 +128,7 @@ const NavigationBarComponent = ({ routes }) => {
                 <div className={`${showFAB ? "backtotop-in" : "backtotop-out"} d-flex flex-column`} onClick={() => window.scrollTo(0, 0)}>
                     <img src={up} alt="" style={{ "width": "20px" }} className="origin-animation" />
                     <img src={origin} alt="" className='origin-container' />
-                </div> 
+                </div>
             }
         </>
     )

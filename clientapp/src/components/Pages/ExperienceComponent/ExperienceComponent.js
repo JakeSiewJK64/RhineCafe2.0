@@ -1,9 +1,11 @@
 import './ExperienceComponent.css';
 import { useEffect, useState } from 'react';
 import { Accordion, AccordionDetails, AccordionSummary, Chip, Typography } from '@mui/material';
+import { useTranslation } from 'react-i18next';
 
 const ExperienceComponent = () => {
     const [experiences, setExperiences] = useState([]);
+    const { t } = useTranslation();
 
     const getExperiences = async () => {
         const data = await fetch('/experience/getExperiences');
@@ -26,7 +28,7 @@ const ExperienceComponent = () => {
                                     <AccordionSummary expandIcon={"V"}>
                                         <div className="d-flex flex-column w-100">
                                             <h4>{experience.CompanyName}</h4>
-                                            <h5>Category: {experience.Category}</h5>
+                                            <h5>{t('Category')}: {experience.Category}</h5>
                                         </div>
                                     </AccordionSummary>
                                     <AccordionDetails>
@@ -34,9 +36,9 @@ const ExperienceComponent = () => {
                                             <img src={experience.CompanyImage} alt="companyimage" style={{ "maxWidth": "300px" }} className="mb-3" />
                                         </div>
                                         <Typography>
-                                            <strong>Duration:</strong> {experience.Duration} Months</Typography>
+                                            <strong>{t('Duration')}:</strong> {experience.Duration} {t('Month')}</Typography>
                                         <Typography>{experience.Description}</Typography>
-                                        <Typography>Tools Used: </Typography>
+                                        <Typography fontWeight="bold">{t('Tools')}: </Typography>
                                         {
                                             experience.Tools.map((tool, index) => {
                                                 return (
@@ -44,7 +46,7 @@ const ExperienceComponent = () => {
                                                 )
                                             })
                                         }
-                                        <Typography>Languages: </Typography>
+                                        <Typography fontWeight="bold">{t('Languages')}: </Typography>
                                         {
                                             experience.Languages.map((language, index) => {
                                                 return (

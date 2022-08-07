@@ -6,7 +6,7 @@ const Footer = ({ routes }) => {
     return (
         <footer className="bg-black text-white w-100 footer-container">
             <Flex flexDirection='column' style={{ "margin": "1em" }}>
-                <ol className="d-flex flex-row justify-content-center m-5 flex-wrap">
+                <ol className="link-container-footer justify-content-center m-5 flex-wrap">
                     {
                         routes.map((route, index) => {
                             return (

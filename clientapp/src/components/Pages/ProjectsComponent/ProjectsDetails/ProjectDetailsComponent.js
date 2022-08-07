@@ -3,8 +3,11 @@ import { useParams } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import moment from 'moment';
 import { Chip } from '@mui/material';
+import { useTranslation } from 'react-i18next';
 
 const ProjectDetailsComponent = () => {
+
+    const { t } = useTranslation();
 
     const [data, setData] = useState(null);
     let { id } = useParams();
@@ -33,7 +36,7 @@ const ProjectDetailsComponent = () => {
                             <div>
                                 {data.Description}
                             </div>
-                            <strong>Tools:</strong>
+                            <strong>{t('Tools')}:</strong>
                             <div className='d-flex flex-row flex-wrap'>
                                 {
                                     data.Tools.map((tool, index) => {
@@ -45,10 +48,10 @@ const ProjectDetailsComponent = () => {
                             </div>
                             <div className='d-flex flex-column my-2'>
                                 <a href={data.GithubRepo} className="my-2 text-black text-decoration-none ms-auto">
-                                    <strong>Github Repository</strong>
+                                    <strong>{t('GithubRepo')}</strong>
                                 </a>
                                 <a href={data.URL} className="my-2 text-black text-decoration-none ms-auto">
-                                    <strong>Project URL</strong>
+                                    <strong>{t('ProjectURL')}</strong>
                                 </a>
                             </div>
                             {

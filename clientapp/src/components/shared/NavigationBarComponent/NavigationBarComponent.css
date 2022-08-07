@@ -21,6 +21,13 @@
         opacity: 0;
         transition: visibility 0s .6s, opacity .6s linear;
     }
+
+    .language-bar-container {
+        top: 0px;
+        left: 0px;
+        position: absolute;
+        margin: 10px;
+    }
 }
 
 /* desktop */
@@ -28,7 +35,7 @@
     .nav-container-mobile {
         display: none !important;
     }
-
+    
     .backtotop-in {
         position: fixed;
         right: 5.55rem;
@@ -45,6 +52,13 @@
         visibility: hidden;
         opacity: 0;
         transition: visibility 0s .6s, opacity .6s linear;
+    }
+
+    .language-bar-container {
+        top: 0px;
+        right: 0px;
+        position: absolute;
+        margin: 10px;
     }
 }
 

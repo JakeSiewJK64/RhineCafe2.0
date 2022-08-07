@@ -3,9 +3,11 @@ import { useEffect, useState } from 'react';
 import moment from 'moment';
 import { Chip } from '@mui/material';
 import { Link } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
 
 const ProjectsComponent = () => {
 
+    const { t } = useTranslation();
     const [projects, setProjects] = useState([]);
 
     const getProjects = async () => {
@@ -30,7 +32,7 @@ const ProjectsComponent = () => {
                                     <div className='my-1 d-flex flex-column'>
                                         <strong className='p-1 bg-black text-white' style={{ maxWidth: "300px" }} key={index}>{project.Name}</strong>
                                         <div className='mt-2'>
-                                            <strong>Tools:&nbsp;</strong>
+                                            <strong>{t('Tools')}:&nbsp;</strong>
                                             <div className='d-flex flex-row flex-wrap'>
                                                 {
                                                     project.Tools.map((tool, index) => {
@@ -46,7 +48,7 @@ const ProjectsComponent = () => {
                             </Link>
                             <div className='d-flex'>
                                 <a href={project.URL} target="_blank" rel="noreferrer" className="project-url ms-auto me-1">
-                                    See Project
+                                    {t('SeeProject')}
                                 </a>
                             </div>
                             <hr />

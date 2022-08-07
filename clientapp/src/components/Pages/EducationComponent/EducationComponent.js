@@ -2,8 +2,11 @@ import './EducationComponent.css';
 import { } from '@mui/material';
 import moment from 'moment';
 import { useEffect, useState } from 'react';
+import { useTranslation } from 'react-i18next';
 
 const EducationComponent = () => {
+
+    const { t } = useTranslation();
     const [educations, setEducation] = useState([]);
 
     const getEducation = async () => {
@@ -29,11 +32,11 @@ const EducationComponent = () => {
                                         <strong className='p-1 bg-black text-white' style={{ maxWidth: "300px" }} key={index}>{education.Institute}</strong>
                                         <div className='mt-2'>
                                             <div className='d-flex flex-row'>
-                                                <strong>Duration:&nbsp;</strong>
-                                                <span>{education.Duration} Years</span>
+                                                <strong>{t('Duration')}:&nbsp;</strong>
+                                                <span>{education.Duration} {t('Year')}</span>
                                             </div>
                                             <div className='d-flex flex-row'>
-                                                <strong>Qualification:&nbsp;</strong>
+                                                <strong>{t('Qualification')}:&nbsp;</strong>
                                                 <span>{education.Qualification}</span>
                                             </div>
                                         </div>
