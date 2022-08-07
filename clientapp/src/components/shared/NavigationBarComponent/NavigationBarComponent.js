@@ -5,7 +5,6 @@ import { useEffect } from 'react';
 
 const NavigationBarComponent = ({ routes }) => {
 
-
     useEffect(() => {
         const menuBtn = document.getElementById('menuButton');
         const menuPage = document.getElementById('menuPage');
@@ -55,7 +54,17 @@ const NavigationBarComponent = ({ routes }) => {
                 </div>
             </div>
             <div className='menu-page' id='menuPage'>
-                hi
+                <div className='d-flex flex-column m-auto text-center'>
+                    {
+                        routes.map((route, index) => {
+                            return (
+                                <Link to={route.route} key={index} className='my-3 text-white text-decoration-none'>
+                                    <h2>{route.name}</h2>
+                                </Link>
+                            )
+                        })
+                    }
+                </div>
             </div>
         </>
     )

@@ -106,11 +106,11 @@
 }
 
 .menu-page {
-    visibility: hidden !important;
+    display: none !important;
 }
 
 .menu-page.open {
-    visibility: visible !important;
+    display: flex !important;
     background: black;
     width: 100%;
     height: 100%;

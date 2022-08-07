@@ -39,7 +39,7 @@ const ProjectsComponent = () => {
                                                     })
                                                 }
                                             </div>
-                                            <a href={project.URL} target="_blank" rel="noreferrer" class="project-url">
+                                            <a href={project.URL} target="_blank" rel="noreferrer" className="project-url">
                                                 See Project
                                             </a>
                                         </div>
