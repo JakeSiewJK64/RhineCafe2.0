@@ -1,12 +1,12 @@
 import './NavigationBarComponent.css';
 import logo from '../../../assets/img/logo.svg';
 import { Link } from 'react-router-dom';
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 
 const NavigationBarComponent = ({ routes }) => {
 
-    const [menuBtn, setMenuBtn] = useState(null);
-    const [menuPage, setMenuPage] = useState(null);
+    const [menuBtn, setMenuBtn] = useState(document.getElementById('menuButton'));
+    const [menuPage, setMenuPage] = useState(document.getElementById('menuPage'));
     const [menuOpen, setMenuOpen] = useState(false);
 
     const closeMenuPage = () => {
@@ -15,10 +15,9 @@ const NavigationBarComponent = ({ routes }) => {
         setMenuOpen(false);
     }
 
-    useEffect(() => {
+    const getState = () => {
         setMenuBtn(document.getElementById('menuButton'));
         setMenuPage(document.getElementById('menuPage'));
-
         if (menuBtn !== null) {
             menuBtn.addEventListener('click', () => {
                 if (!menuOpen) {
@@ -33,8 +32,7 @@ const NavigationBarComponent = ({ routes }) => {
                 setMenuOpen(false);
             })
         }
-    }, [menuBtn, menuPage, menuOpen])
-
+    }
 
     return (
         <>
@@ -58,7 +56,7 @@ const NavigationBarComponent = ({ routes }) => {
                     }
                 </ul>
             </div>
-            <div className='nav-container-mobile'>
+            <div className='nav-container-mobile' onClick={() => { getState() }}>
                 <div className='menu-btn' id='menuButton'>
                     <div className='menu-btn__burger'></div>
                 </div>
