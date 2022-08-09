@@ -1,3 +1,5 @@
+import 'package:flutter/foundation.dart';
+
 import 'package:app/components/services/auth_services.dart';
 import 'package:app/components/utils/string_extensions.dart';
 import 'package:flutter/material.dart';
@@ -13,14 +15,15 @@ class _LoginComponentState extends State<LoginComponent> {
   late String? username;
   late String? password;
 
-  final _snackBar = SnackBar(
-    content: const Text('Successfully Logged In!'),
-    duration: const Duration(seconds: 5),
-    action: SnackBarAction(
-      label: 'OK',
-      onPressed: () {},
-    ),
-  );
+  late SnackBar _snackBar;
+
+  showSnackbar(String message) {
+    _snackBar = SnackBar(
+        content: Text(message),
+        duration: const Duration(seconds: 5),
+        action: SnackBarAction(label: 'OK', onPressed: (() => {})));
+    ScaffoldMessenger.of(context).showSnackBar(_snackBar);
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -73,8 +76,20 @@ class _LoginComponentState extends State<LoginComponent> {
                   textStyle: const TextStyle(fontSize: 20),
                 ),
                 onPressed: () {
-                  ScaffoldMessenger.of(context).showSnackBar(_snackBar);
-                  const AuthService().validateAndSave(username!, password!);
+                  const AuthService()
+                      .validateAndSave(username!, password!)
+                      .then(
+                        (value) => {
+                          if (value.body.contains("jwtToken"))
+                            {
+                              Navigator.pushNamed(context, "/"),
+                            }
+                          else
+                            {
+                              showSnackbar(value.body.replaceAll("\"", "")),
+                            }
+                        },
+                      );
                 },
                 icon: const Icon(
                   Icons.login,
