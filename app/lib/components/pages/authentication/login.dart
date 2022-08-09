@@ -31,7 +31,17 @@ class _LoginComponentState extends State<LoginComponent> {
       body: Padding(
         padding: const EdgeInsets.all(10),
         child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
           children: [
+            const Padding(
+                padding: EdgeInsets.all(10),
+                child: Align(
+                  alignment: Alignment.centerLeft,
+                  child: Text(
+                    "Login",
+                    style: TextStyle(fontWeight: FontWeight.bold, fontSize: 32),
+                  ),
+                )),
             Padding(
               padding: const EdgeInsets.fromLTRB(0, 10, 0, 0),
               child: TextFormField(
