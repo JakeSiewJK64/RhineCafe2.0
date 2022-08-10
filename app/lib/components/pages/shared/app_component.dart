@@ -1,5 +1,5 @@
-import 'package:app/components/achievements/achievements.dart';
-import 'package:app/components/pages/experience/experience_component.dart';
+import 'package:app/components/pages/achievements/achievements.dart';
+import 'package:app/components/pages/experience/experience.dart';
 import 'package:app/components/pages/home/homepage.dart';
 import 'package:flutter/material.dart';
 
