@@ -133,15 +133,36 @@ class _ExperienceComponentState extends State<ExperienceComponent> {
                   for (final tool in tools)
                     Padding(
                       padding: const EdgeInsets.fromLTRB(0, 10, 0, 0),
-                      child: TextFormField(
-                        keyboardType: TextInputType.datetime,
-                        cursorColor: const Color(0xfff1c40f),
-                        decoration: const InputDecoration(
-                          focusColor: Color(0xfff1c40f),
-                          border: OutlineInputBorder(),
-                          hintText: "Tool",
-                        ),
-                        onChanged: (value) => {},
+                      child: Row(
+                        children: [
+                          Flexible(
+                            child: TextFormField(
+                              keyboardType: TextInputType.datetime,
+                              cursorColor: const Color(0xfff1c40f),
+                              decoration: const InputDecoration(
+                                focusColor: Color(0xfff1c40f),
+                                border: OutlineInputBorder(),
+                                hintText: "Tool",
+                              ),
+                              onChanged: (value) => {},
+                            ),
+                          ),
+                          Padding(
+                            padding: const EdgeInsets.all(10),
+                            child: OutlinedButton(
+                              style: TextButton.styleFrom(
+                                padding: const EdgeInsets.all(16),
+                                textStyle: const TextStyle(fontSize: 20),
+                              ),
+                              onPressed: () {
+                                setState(() {
+                                  tools.removeAt(tools.indexOf(tool));
+                                });
+                              },
+                              child: const Icon(Icons.remove),
+                            ),
+                          ),
+                        ],
                       ),
                     ),
                 ],
@@ -173,7 +194,7 @@ class _ExperienceComponentState extends State<ExperienceComponent> {
               padding: const EdgeInsets.all(10),
               child: Column(
                 children: [
-                  for (final language in languages)
+                  for (var index = 0; index < languages.length; index++)
                     Padding(
                       padding: const EdgeInsets.fromLTRB(0, 10, 0, 0),
                       child: Row(
@@ -187,7 +208,9 @@ class _ExperienceComponentState extends State<ExperienceComponent> {
                                 border: OutlineInputBorder(),
                                 hintText: "Language",
                               ),
-                              onChanged: (value) => {},
+                              onChanged: (value) => {
+                                setState(() => {languages[index] = value})
+                              },
                             ),
                           ),
                           Padding(
@@ -199,7 +222,10 @@ class _ExperienceComponentState extends State<ExperienceComponent> {
                               ),
                               onPressed: () {
                                 setState(() {
-                                  languages.remove(language);
+                                  languages.removeWhere(
+                                      (element) => element == languages[index]);
+                                  languages = [...languages];
+                                  debugPrint(languages.toString());
                                 });
                               },
                               child: const Icon(Icons.remove),
@@ -220,7 +246,9 @@ class _ExperienceComponentState extends State<ExperienceComponent> {
                     padding: const EdgeInsets.all(16),
                     textStyle: const TextStyle(fontSize: 20),
                   ),
-                  onPressed: () {},
+                  onPressed: () {
+                    debugPrint(languages.toString());
+                  },
                   icon: const Icon(
                     Icons.login,
                     size: 20.0,
