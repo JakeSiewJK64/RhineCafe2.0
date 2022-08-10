@@ -1,8 +1,9 @@
-import 'package:flutter/foundation.dart';
+import 'dart:convert';
 
 import 'package:app/components/services/auth_services.dart';
 import 'package:app/components/utils/string_extensions.dart';
 import 'package:flutter/material.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class LoginComponent extends StatefulWidget {
   const LoginComponent({Key? key}) : super(key: key);
@@ -12,10 +13,26 @@ class LoginComponent extends StatefulWidget {
 }
 
 class _LoginComponentState extends State<LoginComponent> {
+  final Future<SharedPreferences> _prefs = SharedPreferences.getInstance();
   late String? username;
   late String? password;
-
   late SnackBar _snackBar;
+
+  Future<void> _setToken(String token) async {
+    final SharedPreferences prefs = await _prefs;
+    prefs.setString('token', token);
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    _prefs.then((SharedPreferences prefs) {
+      var token = prefs.getString('token') ?? "";
+      if (token.isNotEmpty) {
+        Navigator.pushNamed(context, '/');
+      }
+    });
+  }
 
   showSnackbar(String message) {
     _snackBar = SnackBar(
@@ -92,6 +109,7 @@ class _LoginComponentState extends State<LoginComponent> {
                         (value) => {
                           if (value.body.contains("jwtToken"))
                             {
+                              _setToken(json.decode(value.body)["jwtToken"]),
                               Navigator.pushNamed(context, "/"),
                             }
                           else
