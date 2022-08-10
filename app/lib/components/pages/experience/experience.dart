@@ -1,5 +1,3 @@
-import 'dart:developer';
-
 import 'package:flutter/material.dart';
 
 class ExperienceComponent extends StatefulWidget {
@@ -178,15 +176,36 @@ class _ExperienceComponentState extends State<ExperienceComponent> {
                   for (final language in languages)
                     Padding(
                       padding: const EdgeInsets.fromLTRB(0, 10, 0, 0),
-                      child: TextFormField(
-                        keyboardType: TextInputType.datetime,
-                        cursorColor: const Color(0xfff1c40f),
-                        decoration: const InputDecoration(
-                          focusColor: Color(0xfff1c40f),
-                          border: OutlineInputBorder(),
-                          hintText: "Language",
-                        ),
-                        onChanged: (value) => {},
+                      child: Row(
+                        children: <Widget>[
+                          Flexible(
+                            child: TextFormField(
+                              keyboardType: TextInputType.datetime,
+                              cursorColor: const Color(0xfff1c40f),
+                              decoration: const InputDecoration(
+                                focusColor: Color(0xfff1c40f),
+                                border: OutlineInputBorder(),
+                                hintText: "Language",
+                              ),
+                              onChanged: (value) => {},
+                            ),
+                          ),
+                          Padding(
+                            padding: const EdgeInsets.all(10),
+                            child: OutlinedButton(
+                              style: TextButton.styleFrom(
+                                padding: const EdgeInsets.all(16),
+                                textStyle: const TextStyle(fontSize: 20),
+                              ),
+                              onPressed: () {
+                                setState(() {
+                                  languages.remove(language);
+                                });
+                              },
+                              child: const Icon(Icons.remove),
+                            ),
+                          ),
+                        ],
                       ),
                     ),
                 ],
