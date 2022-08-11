@@ -1,6 +1,6 @@
 import 'dart:convert';
 
-import 'package:app/components/services/auth_services.dart';
+import 'package:app/components/services/auth.services.dart';
 import 'package:app/components/utils/string_extensions.dart';
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';

@@ -1,4 +1,7 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
+import 'package:app/components/services/experiences.service.dart';
 
 class ExperienceComponent extends StatefulWidget {
   const ExperienceComponent({Key? key}) : super(key: key);
@@ -8,257 +11,35 @@ class ExperienceComponent extends StatefulWidget {
 }
 
 class _ExperienceComponentState extends State<ExperienceComponent> {
-  late List<String> tools = ["sample tool"];
-  late List<String> languages = ["sample language"];
+  late List<dynamic> experiences = [];
+  bool isLoading = true;
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-        child: ListView(
+    getExperience() {
+      const ExperienceService()
+          .getExperiences()
+          .then(
+            (value) => {
+              setState(
+                () => {
+                  experiences = json.decode(value.body) as List<dynamic>,
+                },
+              ),
+            },
+          )
+          .then((_) => {
+                isLoading = false,
+                debugPrint("done"),
+                debugPrint(experiences[0].toString())
+              });
+    }
+
+    if (experiences.isEmpty) getExperience();
+
+    return (Column(
       children: [
-        Column(
-          children: [
-            const Padding(
-              padding: EdgeInsets.all(10),
-              child: Align(
-                alignment: Alignment.centerLeft,
-                child: Text(
-                  "New Experience",
-                  style: TextStyle(fontSize: 32, fontWeight: FontWeight.bold),
-                ),
-              ),
-            ),
-            Padding(
-              padding: const EdgeInsets.all(10),
-              child: TextFormField(
-                cursorColor: const Color(0xfff1c40f),
-                decoration: const InputDecoration(
-                  focusColor: Color(0xfff1c40f),
-                  border: OutlineInputBorder(),
-                  hintText: "Company Name",
-                ),
-                onChanged: (value) => {},
-              ),
-            ),
-            Padding(
-              padding: const EdgeInsets.all(10),
-              child: TextFormField(
-                cursorColor: const Color(0xfff1c40f),
-                decoration: const InputDecoration(
-                  focusColor: Color(0xfff1c40f),
-                  border: OutlineInputBorder(),
-                  hintText: "Description",
-                ),
-                onChanged: (value) => {},
-              ),
-            ),
-            Padding(
-              padding: const EdgeInsets.all(10),
-              child: TextFormField(
-                keyboardType: TextInputType.number,
-                cursorColor: const Color(0xfff1c40f),
-                decoration: const InputDecoration(
-                  focusColor: Color(0xfff1c40f),
-                  border: OutlineInputBorder(),
-                  hintText: "Duration (years)",
-                ),
-                onChanged: (value) => {},
-              ),
-            ),
-            Padding(
-              padding: const EdgeInsets.all(10),
-              child: TextFormField(
-                keyboardType: TextInputType.datetime,
-                cursorColor: const Color(0xfff1c40f),
-                decoration: const InputDecoration(
-                  focusColor: Color(0xfff1c40f),
-                  border: OutlineInputBorder(),
-                  hintText: "Start Date",
-                ),
-                onChanged: (value) => {},
-              ),
-            ),
-            Padding(
-              padding: const EdgeInsets.all(10),
-              child: TextFormField(
-                keyboardType: TextInputType.datetime,
-                cursorColor: const Color(0xfff1c40f),
-                decoration: const InputDecoration(
-                  focusColor: Color(0xfff1c40f),
-                  border: OutlineInputBorder(),
-                  hintText: "End Date",
-                ),
-                onChanged: (value) => {},
-              ),
-            ),
-            Padding(
-              padding: const EdgeInsets.all(10),
-              child: TextFormField(
-                keyboardType: TextInputType.datetime,
-                cursorColor: const Color(0xfff1c40f),
-                decoration: const InputDecoration(
-                  focusColor: Color(0xfff1c40f),
-                  border: OutlineInputBorder(),
-                  hintText: "Category",
-                ),
-                onChanged: (value) => {},
-              ),
-            ),
-            Align(
-              alignment: Alignment.centerRight,
-              child: Padding(
-                padding: const EdgeInsets.all(10),
-                child: OutlinedButton.icon(
-                  style: TextButton.styleFrom(
-                    padding: const EdgeInsets.all(16),
-                    textStyle: const TextStyle(fontSize: 20),
-                  ),
-                  onPressed: () {
-                    setState(() {
-                      tools = [...tools, "new"];
-                    });
-                  },
-                  icon: const Icon(
-                    Icons.login,
-                    size: 20.0,
-                  ),
-                  label: const Text('Add Tool'),
-                ),
-              ),
-            ),
-            Padding(
-              padding: const EdgeInsets.all(10),
-              child: Column(
-                children: [
-                  for (final tool in tools)
-                    Padding(
-                      padding: const EdgeInsets.fromLTRB(0, 10, 0, 0),
-                      child: Row(
-                        children: [
-                          Flexible(
-                            child: TextFormField(
-                              keyboardType: TextInputType.datetime,
-                              cursorColor: const Color(0xfff1c40f),
-                              decoration: const InputDecoration(
-                                focusColor: Color(0xfff1c40f),
-                                border: OutlineInputBorder(),
-                                hintText: "Tool",
-                              ),
-                              onChanged: (value) => {},
-                            ),
-                          ),
-                          Padding(
-                            padding: const EdgeInsets.all(10),
-                            child: OutlinedButton(
-                              style: TextButton.styleFrom(
-                                padding: const EdgeInsets.all(16),
-                                textStyle: const TextStyle(fontSize: 20),
-                              ),
-                              onPressed: () {
-                                setState(() {
-                                  tools.removeAt(tools.indexOf(tool));
-                                });
-                              },
-                              child: const Icon(Icons.remove),
-                            ),
-                          ),
-                        ],
-                      ),
-                    ),
-                ],
-              ),
-            ),
-            Align(
-              alignment: Alignment.centerRight,
-              child: Padding(
-                padding: const EdgeInsets.all(10),
-                child: OutlinedButton.icon(
-                  style: TextButton.styleFrom(
-                    padding: const EdgeInsets.all(16),
-                    textStyle: const TextStyle(fontSize: 20),
-                  ),
-                  onPressed: () {
-                    setState(() {
-                      languages = [...languages, "new language"];
-                    });
-                  },
-                  icon: const Icon(
-                    Icons.login,
-                    size: 20.0,
-                  ),
-                  label: const Text('Add Language'),
-                ),
-              ),
-            ),
-            Padding(
-              padding: const EdgeInsets.all(10),
-              child: Column(
-                children: [
-                  for (var index = 0; index < languages.length; index++)
-                    Padding(
-                      padding: const EdgeInsets.fromLTRB(0, 10, 0, 0),
-                      child: Row(
-                        children: <Widget>[
-                          Flexible(
-                            child: TextFormField(
-                              keyboardType: TextInputType.datetime,
-                              cursorColor: const Color(0xfff1c40f),
-                              decoration: const InputDecoration(
-                                focusColor: Color(0xfff1c40f),
-                                border: OutlineInputBorder(),
-                                hintText: "Language",
-                              ),
-                              onChanged: (value) => {
-                                setState(() => {languages[index] = value})
-                              },
-                            ),
-                          ),
-                          Padding(
-                            padding: const EdgeInsets.all(10),
-                            child: OutlinedButton(
-                              style: TextButton.styleFrom(
-                                padding: const EdgeInsets.all(16),
-                                textStyle: const TextStyle(fontSize: 20),
-                              ),
-                              onPressed: () {
-                                setState(() {
-                                  languages.removeWhere(
-                                      (element) => element == languages[index]);
-                                  languages = [...languages];
-                                  debugPrint(languages.toString());
-                                });
-                              },
-                              child: const Icon(Icons.remove),
-                            ),
-                          ),
-                        ],
-                      ),
-                    ),
-                ],
-              ),
-            ),
-            Align(
-              alignment: Alignment.centerRight,
-              child: Padding(
-                padding: const EdgeInsets.all(10),
-                child: OutlinedButton.icon(
-                  style: TextButton.styleFrom(
-                    padding: const EdgeInsets.all(16),
-                    textStyle: const TextStyle(fontSize: 20),
-                  ),
-                  onPressed: () {
-                    debugPrint(languages.toString());
-                  },
-                  icon: const Icon(
-                    Icons.login,
-                    size: 20.0,
-                  ),
-                  label: const Text('Add Experience'),
-                ),
-              ),
-            ),
-          ],
-        ),
+        for (var experience in experiences) Text(experience["CompanyName"])
       ],
     ));
   }
