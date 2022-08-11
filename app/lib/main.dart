@@ -1,4 +1,6 @@
 import 'package:app/components/pages/authentication/login.dart';
+import 'package:app/components/pages/experience/add-experience/add_experience.dart';
+import 'package:app/components/pages/experience/experience.dart';
 import 'package:app/components/pages/shared/app_component.dart';
 import 'package:flutter/material.dart';
 
@@ -20,6 +22,7 @@ class MyApp extends StatelessWidget {
       initialRoute: '/auth/authenticate',
       routes: {
         "/": (context) => const AppComponent(),
+        "/experience/details": (context) => const ExperienceEditor(),
         "/auth/authenticate": (context) => const LoginComponent(),
       },
     );

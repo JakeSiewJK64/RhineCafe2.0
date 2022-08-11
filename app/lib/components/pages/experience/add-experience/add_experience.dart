@@ -1,7 +1,7 @@
-import 'package:flutter/cupertino.dart';
+import 'dart:collection';
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
-import 'package:flutter/src/foundation/key.dart';
-import 'package:flutter/src/widgets/framework.dart';
 
 class ExperienceEditor extends StatefulWidget {
   const ExperienceEditor({Key? key}) : super(key: key);
@@ -16,18 +16,22 @@ class _ExperienceEditorState extends State<ExperienceEditor> {
 
   @override
   Widget build(BuildContext context) {
-    return (Container(
-      child: ListView(
+    final arguments = (ModalRoute.of(context)?.settings.arguments);
+    final int id = json.decode(arguments.toString())["id"];
+
+    return (Scaffold(
+      body: ListView(
         children: [
           Column(
             children: [
-              const Padding(
-                padding: EdgeInsets.all(10),
+              Padding(
+                padding: const EdgeInsets.all(10),
                 child: Align(
                   alignment: Alignment.centerLeft,
                   child: Text(
-                    "New Experience",
-                    style: TextStyle(fontSize: 32, fontWeight: FontWeight.bold),
+                    id == 0 ? "New Experience" : "Edit Experience",
+                    style: const TextStyle(
+                        fontSize: 32, fontWeight: FontWeight.bold),
                   ),
                 ),
               ),
