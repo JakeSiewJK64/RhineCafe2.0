@@ -1,6 +1,5 @@
 import 'package:app/components/pages/authentication/login.dart';
-import 'package:app/components/pages/experience/add-experience/add_experience.dart';
-import 'package:app/components/pages/experience/experience.dart';
+import 'package:app/components/pages/experience/experience-editor/experience_editor.dart';
 import 'package:app/components/pages/shared/app_component.dart';
 import 'package:flutter/material.dart';
 
