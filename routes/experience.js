@@ -7,4 +7,9 @@ router.get("/getExperiences", async (req, res, next) => {
     res.send(experiences);
 });
 
+router.get("/getExperienceById/:projectId", async (req, res) => {
+    const experience = await experienceModel.findById(req.params.projectId);
+    res.send(experience);
+});
+
 module.exports = router;
