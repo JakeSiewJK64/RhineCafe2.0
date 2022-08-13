@@ -1,5 +1,7 @@
 import 'dart:convert';
+import 'dart:developer';
 import 'dart:typed_data';
+import 'package:app/components/services/experiences.service.dart';
 import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
 
@@ -14,6 +16,7 @@ class _ExperienceEditorState extends State<ExperienceEditor> {
   late List<String> tools = ["sample tool"];
   late List<String> languages = ["sample language"];
   late Uint8List image = Uint8List(0);
+  dynamic myExperience;
 
   Future<void> getImage() async {
     FilePickerResult? result = await FilePicker.platform.pickFiles();
@@ -31,9 +34,27 @@ class _ExperienceEditorState extends State<ExperienceEditor> {
 
   @override
   Widget build(BuildContext context) {
+    fetchExperienceById(String id) {
+      if (!id.startsWith("newid")) {
+        const ExperienceService().getExperienceById(id).then(
+              (value) => {
+                setState(
+                  () => {
+                    myExperience = json.decode(value.body),
+                  },
+                ),
+              },
+            );
+      }
+    }
+
     try {
       final arguments = (ModalRoute.of(context)?.settings.arguments);
-      final int id = json.decode(arguments.toString())["id"];
+      final String id = json.decode(arguments.toString())["id"];
+
+      if (myExperience == null) {
+        fetchExperienceById(id);
+      }
 
       return (Scaffold(
         body: ListView(
@@ -45,7 +66,7 @@ class _ExperienceEditorState extends State<ExperienceEditor> {
                   child: Align(
                     alignment: Alignment.centerLeft,
                     child: Text(
-                      id == 0 ? "New Experience" : "Edit Experience",
+                      id.isEmpty ? "New Experience" : "Edit Experience",
                       style: const TextStyle(
                           fontSize: 32, fontWeight: FontWeight.bold),
                     ),
@@ -54,6 +75,7 @@ class _ExperienceEditorState extends State<ExperienceEditor> {
                 Padding(
                   padding: const EdgeInsets.all(10),
                   child: TextFormField(
+                    initialValue: myExperience["CompanyName"].toString(),
                     cursorColor: const Color(0xfff1c40f),
                     decoration: const InputDecoration(
                       focusColor: Color(0xfff1c40f),
@@ -89,6 +111,7 @@ class _ExperienceEditorState extends State<ExperienceEditor> {
                 Padding(
                   padding: const EdgeInsets.all(10),
                   child: TextFormField(
+                    initialValue: myExperience["Description"].toString(),
                     cursorColor: const Color(0xfff1c40f),
                     decoration: const InputDecoration(
                       focusColor: Color(0xfff1c40f),
@@ -101,6 +124,7 @@ class _ExperienceEditorState extends State<ExperienceEditor> {
                 Padding(
                   padding: const EdgeInsets.all(10),
                   child: TextFormField(
+                    initialValue: myExperience["Duration"].toString(),
                     keyboardType: TextInputType.number,
                     cursorColor: const Color(0xfff1c40f),
                     decoration: const InputDecoration(
@@ -114,6 +138,7 @@ class _ExperienceEditorState extends State<ExperienceEditor> {
                 Padding(
                   padding: const EdgeInsets.all(10),
                   child: TextFormField(
+                    initialValue: myExperience["StartDate"].toString(),
                     keyboardType: TextInputType.datetime,
                     cursorColor: const Color(0xfff1c40f),
                     decoration: const InputDecoration(
@@ -127,6 +152,7 @@ class _ExperienceEditorState extends State<ExperienceEditor> {
                 Padding(
                   padding: const EdgeInsets.all(10),
                   child: TextFormField(
+                    initialValue: myExperience["EndDate"].toString(),
                     keyboardType: TextInputType.datetime,
                     cursorColor: const Color(0xfff1c40f),
                     decoration: const InputDecoration(
@@ -140,6 +166,7 @@ class _ExperienceEditorState extends State<ExperienceEditor> {
                 Padding(
                   padding: const EdgeInsets.all(10),
                   child: TextFormField(
+                    initialValue: myExperience["Category"].toString(),
                     keyboardType: TextInputType.datetime,
                     cursorColor: const Color(0xfff1c40f),
                     decoration: const InputDecoration(
@@ -309,6 +336,7 @@ class _ExperienceEditorState extends State<ExperienceEditor> {
         ),
       ));
     } catch (e) {
+      debugPrint(e.toString());
       return (const Scaffold(
         body: Text("error occured"),
       ));

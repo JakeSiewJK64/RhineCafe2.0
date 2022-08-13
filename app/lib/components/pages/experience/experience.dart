@@ -44,7 +44,7 @@ class _ExperienceComponentState extends State<ExperienceComponent> {
             child: OutlinedButton(
               onPressed: () => {
                 Navigator.pushNamed(context, '/experience/details',
-                    arguments: {"\"id\":${0}"}),
+                    arguments: {"\"id\":\"newid\""}),
               },
               child: const Text("New Experience"),
             ),
@@ -104,7 +104,10 @@ class _ExperienceComponentState extends State<ExperienceComponent> {
                   child: Padding(
                     padding: const EdgeInsets.all(10),
                     child: OutlinedButton(
-                      onPressed: () => {},
+                      onPressed: () => {
+                        Navigator.pushNamed(context, '/experience/details',
+                            arguments: {"\"id\":\"${experience["_id"]}\""}),
+                      },
                       child: const Text("Edit"),
                     ),
                   ),
