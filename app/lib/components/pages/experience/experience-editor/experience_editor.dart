@@ -32,30 +32,39 @@ class _ExperienceEditorState extends State<ExperienceEditor> {
     }
   }
 
+  fetchExperienceById(String id) async {
+    if (!id.startsWith("newid")) {
+      await const ExperienceService().getExperienceById(id).then(
+            (value) => {
+              setState(
+                () => {
+                  myExperience = json.decode(value.body),
+                },
+              ),
+            },
+          );
+    }
+  }
+
+  getImageProp(String imageString) {
+    if (imageString.startsWith(RegExp(r"http"))) {
+      return Image.network(imageString, width: 200);
+    }
+    final UriData? data = Uri.parse(imageString).data;
+    Uint8List? myImage = data?.contentAsBytes();
+    return Image.memory(myImage!, width: 200);
+  }
+
   @override
   Widget build(BuildContext context) {
-    fetchExperienceById(String id) {
-      if (!id.startsWith("newid")) {
-        const ExperienceService().getExperienceById(id).then(
-              (value) => {
-                setState(
-                  () => {
-                    myExperience = json.decode(value.body),
-                  },
-                ),
-              },
-            );
-      }
+    final arguments = (ModalRoute.of(context)?.settings.arguments);
+    final String id = json.decode(arguments.toString())["id"];
+
+    if (myExperience == null) {
+      fetchExperienceById(id);
     }
 
     try {
-      final arguments = (ModalRoute.of(context)?.settings.arguments);
-      final String id = json.decode(arguments.toString())["id"];
-
-      if (myExperience == null) {
-        fetchExperienceById(id);
-      }
-
       return (Scaffold(
         body: ListView(
           children: [
@@ -102,10 +111,10 @@ class _ExperienceEditorState extends State<ExperienceEditor> {
                   ),
                 ),
                 Visibility(
-                  visible: image.isNotEmpty,
+                  visible: myExperience["CompanyImage"].toString().isNotEmpty,
                   child: Padding(
                     padding: const EdgeInsets.all(10),
-                    child: Image.memory(image, width: 200),
+                    child: getImageProp(myExperience["CompanyImage"]),
                   ),
                 ),
                 Padding(
@@ -336,7 +345,6 @@ class _ExperienceEditorState extends State<ExperienceEditor> {
         ),
       ));
     } catch (e) {
-      debugPrint(e.toString());
       return (const Scaffold(
         body: Text("error occured"),
       ));
